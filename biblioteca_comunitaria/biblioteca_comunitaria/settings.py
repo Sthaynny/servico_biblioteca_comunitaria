@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-puwv(l10ts438)w6$_(pmdf@v=^3clg0hl=*h#aip8$pvs7r*=
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -37,8 +37,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'login.apps.LoginConfig',
-    'emprestimos.apps.EmprestimosConfig',
     'livros.apps.LivrosConfig',
 ]
 
