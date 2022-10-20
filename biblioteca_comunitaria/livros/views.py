@@ -1,26 +1,28 @@
+import json
 from http.client import HTTPResponse
-from telnetlib import STATUS
 
-from django.http import JsonResponse
+from django.core import serializers
+from django.http import HttpResponseNotFound, JsonResponse
 from django.shortcuts import render
-from django.template import loader
 
 from .models import Livro
 
 
+def to_json(_livro: Livro):
+        return {"titulo": _livro.titulo, "descricao": _livro.descricao, "autor":_livro.autor,}
+
+
 # Create your views here.
 def getLivros(request):
-    listaLivros = Livro.objects.all().values() 
-    if listaLivros.count() <= 0:
-        data =  {
-            'livros':[]
-        }
-    else: 
-        data =  {
-            'livros': listaLivros
-        }
+    if request.method == 'GET':
+        listaLivros = Livro.objects.all().values() 
+        data = []
+        for element in listaLivros:
+            data.append(element)
+        return JsonResponse(data, safe=False)
+    else:
+        return HttpResponseNotFound()
 
-    return JsonResponse(data)
 
 def cadastrar(request):
     if request.method == 'POST':
@@ -29,14 +31,11 @@ def cadastrar(request):
         descricao = request.POST['descricao'];
         livro = Livro(titulo=titulo, autor=autor, descricao=descricao)
         livro.save()
-        return JsonResponse({"livro": titulo})
+        return JsonResponse(to_json(livro), safe=False)
     else:
-        return JsonResponse({"erro": "Algo inesperado aconteceu"}, status=404)
+        return HttpResponseNotFound()
 
-    
-    
-
-def excluir(id):
+def excluir(request, id):
     return HTTPResponse('test')
 
 def atualizar(id):
