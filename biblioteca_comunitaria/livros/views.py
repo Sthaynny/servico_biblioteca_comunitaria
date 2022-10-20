@@ -1,8 +1,10 @@
 import json
 from http.client import HTTPResponse
+from warnings import catch_warnings
 
 from django.core import serializers
-from django.http import HttpResponseNotFound, JsonResponse
+from django.http import (HttpResponseBadRequest, HttpResponseNotFound,
+                         JsonResponse)
 from django.shortcuts import render
 
 from .models import Livro
@@ -36,7 +38,16 @@ def cadastrar(request):
         return HttpResponseNotFound()
 
 def excluir(request, id):
-    return HTTPResponse('test')
+    if request.method == 'DELETE':
+        try:
+            livro = Livro.objects.get(id=id)
+            livro.delete()
+            return JsonResponse(to_json(livro))
+        except:
+            return HttpResponseBadRequest()
+    else:
+        return HttpResponseNotFound()
+
 
 def atualizar(id):
     return HTTPResponse('test')

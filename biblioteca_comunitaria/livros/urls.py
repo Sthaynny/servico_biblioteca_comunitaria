@@ -7,5 +7,5 @@ urlpatterns = [
     path('', views.getLivros, name='getLivros',),
     path('cadastrar', views.cadastrar, name='cadastrar'),
     path('atualizar/', views.atualizar, name='atualizar'),
-    path('excluir/', views.excluir, name='excluir'),
+    path('excluir/<int:id>', views.excluir, name='excluir'),
 ]
