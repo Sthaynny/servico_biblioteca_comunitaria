@@ -1,12 +1,6 @@
-import json
-from email.mime import image
-from http.client import HTTPResponse
-from warnings import catch_warnings
 
-from django.core import serializers
 from django.http import (HttpResponseBadRequest, HttpResponseNotFound,
                          JsonResponse)
-from django.shortcuts import render
 
 from .models import Livro
 
