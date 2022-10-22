@@ -49,5 +49,15 @@ def excluir(request, id):
         return HttpResponseNotFound()
 
 
-def atualizar(id):
-    return HTTPResponse('test')
+def atualizar(request, id):
+    if request.method == 'PUT':
+        try:
+            livro = Livro.objects.get(id=id)
+            livro.titulo = request.POST['titulo'];
+            livro.autor = request.POST['autor'];
+            livro.descricao = request.POST['descricao'];
+            return JsonResponse(to_json(livro))
+        except:
+            return HttpResponseBadRequest()
+    else:
+        return HttpResponseNotFound()
