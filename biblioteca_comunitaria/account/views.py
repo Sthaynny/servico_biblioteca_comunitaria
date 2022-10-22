@@ -1,10 +1,9 @@
 from django.contrib.auth import authenticate, login
+# Create your views here.
+from django.contrib.auth.models import User
 from django.http import (HttpResponse, HttpResponseBadRequest,
                          HttpResponseNotFound, JsonResponse)
 from django.shortcuts import render
-
-# Create your views here.
-from .models import User
 
 
 def criarUsuario(request):
