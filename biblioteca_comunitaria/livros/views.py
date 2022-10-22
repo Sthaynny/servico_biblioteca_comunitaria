@@ -11,7 +11,7 @@ from .models import Livro
 
 
 def to_json(_livro: Livro):
-        return {"titulo": _livro.titulo, "descricao": _livro.descricao, "autor":_livro.autor,}
+        return {"titulo": _livro.titulo, "descricao": _livro.descricao, "autor":_livro.autor, "imagem": _livro.imagem,}
 
 
 # Create your views here.
@@ -19,6 +19,7 @@ def getLivros(request):
     if request.method == 'GET':
         listaLivros = Livro.objects.all().values() 
         data = []
+        print(listaLivros)
         for element in listaLivros:
             data.append(element)
         return JsonResponse(data, safe=False)
@@ -56,6 +57,7 @@ def atualizar(request, id):
             livro.titulo = request.POST['titulo'];
             livro.autor = request.POST['autor'];
             livro.descricao = request.POST['descricao'];
+            livro.imagem = request.POST['imagem'];
             return JsonResponse(to_json(livro))
         except:
             return HttpResponseBadRequest()

@@ -42,6 +42,7 @@ Esse:
 Descreva as tecnologias usadas aqui:
 
 - Django
+- Pillow 
 
 # :bug: Issues
 
