@@ -28,6 +28,7 @@ def loginApp(request):
             return HttpResponseBadRequest({"mensagem": "conta desabilitada"})
     else:
         return HttpResponseBadRequest({"mensagem": "login invalido"})
-        
+
 def logout(request):
-    print('test')
+    logout(request)
+    return HttpResponse()
