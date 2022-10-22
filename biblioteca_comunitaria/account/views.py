@@ -8,8 +8,12 @@ from django.shortcuts import render
 
 def criarUsuario(request):
     if request.method == 'POST':
-        User.objects.create_user(request.POST['usuario'], request.POST['email'], request.POST['senha']);
-        return HttpResponse()
+        try:
+            user = User(username=request.POST['user'], email=request.POST['email'], password=request.POST['senha'])
+            user.save();
+            return HttpResponse(user.username)
+        except:
+            return HttpResponseBadRequest("usuario ja existe")
     else:
         return HttpResponseNotFound()
     
