@@ -1,8 +1,10 @@
 
+from django.contrib.auth.models import User
 from django.http import (HttpResponseBadRequest, HttpResponseNotFound,
                          JsonResponse)
 
-from .models import Livro
+from ..account.models import TokenUsuario
+from .models import Emprestimo, Livro
 
 
 def to_json(_livro: Livro):
@@ -61,3 +63,4 @@ def atualizar(request, id):
             return HttpResponseBadRequest()
     else:
         return HttpResponseNotFound()
+
