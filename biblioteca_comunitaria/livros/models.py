@@ -12,6 +12,6 @@ class Livro(models.Model):
     imagem = models.ImageField(upload_to="imgs",default=None)
 
 class Emprestimo(models.Model):
-    idUsuario = models.CharField(max_length=255) 
-    idLivros= models.IntegerField()
+    username = models.CharField(max_length=255) 
+    idLivro= models.IntegerField(unique=True)
     

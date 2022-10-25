@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 from django.http import (HttpResponse, HttpResponseBadRequest,
                          HttpResponseNotFound, JsonResponse)
 from django.shortcuts import render
-
+from .models import TokenUsuario
 
 def retornarBadRequest(_mensagem:String):
     return HttpResponseBadRequest(_mensagem)
@@ -51,8 +51,13 @@ def loginApp(request):
     
 
 def logoutApp(request):
-    logout(request)
-    return HttpResponse()
+    if request.method == 'POST':
+        logout(request)
+        request
+        return HttpResponse()
+    else:
+        return HttpResponseNotFound()
+    
 
 def to_json(_user: User):
     return {"user": _user.username, "senha": _user.password,}

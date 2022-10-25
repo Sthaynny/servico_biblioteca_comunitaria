@@ -16,8 +16,10 @@ def getLivros(request):
     if request.method == 'GET':
         listaLivros = Livro.objects.all().values()
         data = []
-        for element in listaLivros:
-            data.append(element)
+        for livro in listaLivros:
+            emprestimo = Emprestimo.objects.get(id=livro['id'])
+            if emprestimo is None:
+                data.append(livro)
         return JsonResponse(data, safe=False)
     else:
         return HttpResponseNotFound()
@@ -64,3 +66,30 @@ def atualizar(request, id):
     else:
         return HttpResponseNotFound()
 
+def emprestimoLivro(request):
+    if request.method == 'POST':
+        try:
+            idLivro = request.POST['id']
+            username = request.POST['username']
+            livro = Livro.objects.get(id=idLivro)
+            emprestimo = Emprestimo(tokenUsuario=username, idLivro=idLivro)
+            emprestimo.save()
+            return JsonResponse(to_json(livro))
+        except:
+            return HttpResponseBadRequest()
+    else:
+        return HttpResponseNotFound()
+
+def meusEmprestimos(request, username):
+    if request.method == 'GET':
+        try:
+            data = []
+            emprestimos = Emprestimo.objects.all()
+            for emprestimo in emprestimos:
+                livro = Livro.objects.get(id=emprestimo.idLivro)
+                data.append(livro)
+            return JsonResponse(data)
+        except:
+            return HttpResponseBadRequest()
+    else:
+        return HttpResponseNotFound()
