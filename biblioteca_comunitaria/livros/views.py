@@ -1,5 +1,4 @@
 
-from django.contrib.auth.models import User
 from django.http import (HttpResponseBadRequest, HttpResponseNotFound,
                          JsonResponse)
 
@@ -86,10 +85,14 @@ def meusEmprestimos(request, username):
             data = []
             emprestimos = Emprestimo.objects.all()
             for emprestimo in emprestimos:
-                livro = Livro.objects.get(id=emprestimo.idLivro)
-                data.append(livro)
+                if username == emprestimo.username:
+                    livro = Livro.objects.get(id=emprestimo.idLivro)
+                    data.append(livro)
             return JsonResponse(data)
         except:
             return HttpResponseBadRequest()
     else:
         return HttpResponseNotFound()
+
+def excluirEmprestimo(request, id):
+    print("test")
