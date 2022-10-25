@@ -5,8 +5,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.http import (HttpResponse, HttpResponseBadRequest,
                          HttpResponseNotFound, JsonResponse)
-from django.shortcuts import render
-from .models import TokenUsuario
+
 
 def retornarBadRequest(_mensagem:String):
     return HttpResponseBadRequest(_mensagem)

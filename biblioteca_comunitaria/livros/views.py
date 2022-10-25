@@ -1,10 +1,8 @@
 
-from django.http import (HttpResponseBadRequest, HttpResponseNotFound,
-                         JsonResponse)
+from django.http import (HttpResponse, HttpResponseBadRequest,
+                         HttpResponseNotFound, JsonResponse)
 
-from ..account.models import TokenUsuario
 from .models import Emprestimo, Livro
-
 
 def to_json(_livro: Livro):
     return {"titulo": _livro.titulo, "descricao": _livro.descricao, "autor": _livro.autor, "imagem": _livro.imagem.url, }
@@ -95,4 +93,12 @@ def meusEmprestimos(request, username):
         return HttpResponseNotFound()
 
 def excluirEmprestimo(request, id):
-    print("test")
+    if request.method == 'DELETE':
+        try:
+            emprestimo = Emprestimo.objects.get(idLivro=id)
+            emprestimo.delete()
+            return HttpResponse()
+        except:
+            return HttpResponseBadRequest()
+    else:
+        return HttpResponseNotFound()
