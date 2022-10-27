@@ -1,4 +1,4 @@
-"""biblioteca_comunitaria URL Configuration
+"""app URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.1/topics/http/urls/
@@ -13,11 +13,20 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from core.views import EmprestimoViewSet, LivroViewSet
 from django.contrib import admin
 from django.urls import include, path
+from rest_framework import routers
 
-urlpatterns = [    
-    path('account/', include('account.urls')),
-    path('livros/', include('livros.urls')),
+from .views import GroupViewSet, UserViewSet
+
+router = routers.DefaultRouter()
+router.register(r'users', UserViewSet)
+router.register(r'groups', GroupViewSet)
+router.register(r'livro', LivroViewSet)
+router.register(r'emprestimo', EmprestimoViewSet)
+
+urlpatterns = [
+    path('', include(router.urls)),
     path('admin/', admin.site.urls),
 ]

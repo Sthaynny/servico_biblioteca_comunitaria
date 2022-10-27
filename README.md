@@ -42,7 +42,7 @@ Esse:
 Descreva as tecnologias usadas aqui:
 
 - Django
-- pip install djangorestframework-jwt
+- Pillow
 
 # :bug: Issues
 

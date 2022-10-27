@@ -1,7 +1,5 @@
-from email.policy import default
-
+from django.contrib.auth.models import User
 from django.db import models
-from pyexpat import model
 
 
 # Create your models here.
@@ -12,6 +10,7 @@ class Livro(models.Model):
     imagem = models.ImageField(upload_to="imgs",default=None)
 
 class Emprestimo(models.Model):
-    username = models.CharField(max_length=255) 
-    idLivro= models.IntegerField(unique=True)
-    
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    livro= models.ForeignKey(Livro,on_delete=models.CASCADE)
+    def __str__(self):
+        return self.owner
