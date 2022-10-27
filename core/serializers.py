@@ -8,7 +8,7 @@ class LivroSerializer(serializers.HyperlinkedModelSerializer):
         fields = ['titulo', 'descricao', 'autor', 'imagem']
 
 class EmprestimoSerializer(serializers.HyperlinkedModelSerializer):
-    livro = Livro(many=True)
+    livro = LivroSerializer(many=True)
     class Meta:
         model = Emprestimo
         fields = ['name', 'owner', 'url', 'livro']
