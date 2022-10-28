@@ -1,14 +1,16 @@
+from app.serializers import UserSerializer
 from rest_framework import serializers
 
 from .models import Emprestimo, Livro
 
+
 class LivroSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Livro
-        fields = ['titulo', 'descricao', 'autor', 'imagem']
+        fields = ['url', 'titulo', 'descricao', 'autor', 'imagem']
 
 class EmprestimoSerializer(serializers.HyperlinkedModelSerializer):
-    livro = LivroSerializer(many=True)
+    livro = LivroSerializer() 
     class Meta:
         model = Emprestimo
-        fields = ['name', 'owner', 'url', 'livro']
+        fields = [ 'url', 'owner', 'livro']
