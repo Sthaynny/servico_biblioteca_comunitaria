@@ -1,7 +1,7 @@
 from django.contrib import admin
 
-from .models import Emprestimo, Livro
+from .models import Emprestimo, Livro, List
 
-# Register your models here.
+admin.site.register(List)
 admin.site.register(Livro)
 admin.site.register(Emprestimo)
