@@ -6,8 +6,7 @@ from .serializers import EmprestimoSerializer, ListSerializer, LivroSerializer
 
 class LivroViewSet(viewsets.ModelViewSet):
     queryset = Livro.objects.all()
-    serializer_class = LivroSerializer
-    permission_classes = [permissions.IsAuthenticated] 
+    serializer_class = LivroSerializer 
 
 class EmprestimoViewSet(viewsets.ModelViewSet):
     queryset = Emprestimo.objects.all()
