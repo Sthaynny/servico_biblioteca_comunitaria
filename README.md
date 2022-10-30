@@ -1,5 +1,5 @@
 <p align="center">
-   <img src="https://user-images.githubusercontent.com/46109133/149638236-08219c77-c837-4883-b428-8bd5c864e850.png" alt="dt money" width="200"/>
+   <img src="https://user-images.githubusercontent.com/46109133/198895075-84dd48ab-f3b6-4cf6-b85e-c991faa14d2c.png" alt="dt money" width="200"/>
 </p>
 
 <h1 align="center">Bilbioteca comunitaria</h1>
