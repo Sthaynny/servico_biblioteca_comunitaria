@@ -6,7 +6,7 @@ from .models import Emprestimo, List, Livro
 class LivroSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Livro
-        fields = ['id', 'url', 'titulo', 'descricao', 'autor', 'imagem']
+        fields = ['id', 'url', 'titulo', 'descricao', 'autor', 'base64']
 
 class EmprestimoSerializer(serializers.HyperlinkedModelSerializer):
     livro = LivroSerializer() 
