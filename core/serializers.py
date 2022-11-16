@@ -10,13 +10,13 @@ class LivroSerializer(serializers.HyperlinkedModelSerializer):
 
 class EmprestimoSerializer(serializers.HyperlinkedModelSerializer):
     livro = LivroSerializer() 
-
+    
     class Meta:
         model = Emprestimo
-        fields = [ 'id', 'url', 'livro' , 'aprovado']
+        fields = [ 'id', 'url', 'livro' , 'aprovado', ]
 
 class ListSerializer(serializers.HyperlinkedModelSerializer):
-    emprestimo_set = EmprestimoSerializer(many=True)
+    emprestimo_set = EmprestimoSerializer(many=True) 
     
     class Meta:
         model = List

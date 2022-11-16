@@ -13,14 +13,14 @@ class Livro(models.Model):
     titulo = models.CharField(max_length=255) 
     descricao =  models.TextField()
     autor = models.CharField(max_length=255)
-    base64 = models.TextField()
+    base64 = models.TextField(default=None)
 
     def __str__(self):
-        return self.titulo
+        return self.titulo 
 
 class Emprestimo(models.Model):
     livro= models.ForeignKey(Livro,on_delete=models.CASCADE)
-    list = models.ForeignKey(List, on_delete=models.CASCADE)
+    list = models.ForeignKey(List, on_delete=models.CASCADE) 
     aprovado = models.BooleanField(default=False)
     
     def __str__(self):
