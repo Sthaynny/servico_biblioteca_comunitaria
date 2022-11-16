@@ -13,11 +13,12 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from core.views import EmprestimoViewSet, ListViewSet, LivroViewSet, criar_emprestimo
 from django.contrib import admin
 from django.urls import include, path
 from rest_framework import routers
 from rest_framework.authtoken import views
+
+from core.views import EmprestimoViewSet, ListViewSet, LivroViewSet
 
 from .views import GroupViewSet, UserViewSet
 
@@ -31,7 +32,6 @@ router.register(r'emprestimo', EmprestimoViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
-    path('login/', views.obtain_auth_token, name='api-tokn-auth'), 
-    path('getEmprestimo/', criar_emprestimo,), 
+    path('login/', views.obtain_auth_token, name='api-tokn-auth'),  
     path('admin/', admin.site.urls),
 ]
