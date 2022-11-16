@@ -15,8 +15,7 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
         )
         user.set_password(validated_data['password'])
         user.save()
-        return user
-    
+        return user 
 
 
 class GroupSerializer(serializers.HyperlinkedModelSerializer):
